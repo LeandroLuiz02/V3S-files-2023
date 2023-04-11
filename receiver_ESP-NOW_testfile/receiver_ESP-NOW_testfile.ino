@@ -1,5 +1,3 @@
-// baseStation_macAddress: C8:F0:9E:A6:A5:7C
-
 //Libs do espnow e wifi
 #include <esp_now.h>
 #include <WiFi.h>
