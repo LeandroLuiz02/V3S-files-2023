@@ -15,6 +15,13 @@ void setup() {
   //Serial.println(WiFi.macAddress());
 
   InitESPNow();
+  esp_now_register_send_cb(OnDataSent);
+
+  if (esp_now_add_peer(&peerInfo) != ESP_OK){
+    Serial.println("Failed to add peer");
+    return;
+  }
+  
   esp_now_register_recv_cb(OnDataRecv);
 
 }
@@ -30,6 +37,8 @@ void InitESPNow() {
     ESP.restart();
   }
 }
+
+void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status) {}
 
 void OnDataRecv(const uint8_t *mac_addr, const uint8_t *data, int data_len) {
 //char macStr[18];
